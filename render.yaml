@@ -22,7 +22,7 @@ services:
       # WEBHOOK URL: Render size verdiği adresi buraya yazmanız gerekecek
       # Şimdilik boş bırakın, kurulumdan sonra düzenleyeceğiz.
       - key: WEBHOOK_URL
-        value: https://n8n-test-96tb.onrender.com
+        value: https://n8n-test-1-rt1o.onrender.com
     # VERİLERİ KAYBETMEMEK İÇİN KRİTİK AYAR!
     disk:
       name: n8n-data
