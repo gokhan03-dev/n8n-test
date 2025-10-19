@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: n8n-test-instance
+    env: docker
+    # Resmi n8n Docker imajını kullanıyoruz
+    image: n8nio/n8n
+    plan: free
+    # n8n'in çalıştığı port
+    ports:
+      - type: http
+        port: 5678
+    # Sağlık kontrolü, Render'ın uygulamanın çalışıp çalışmadığını anlamasını sağlar
+    healthCheckPath: /healthz
+    envVars:
+      # GÜVENLİK: Herkesin erişmesini engellemek için temel şifreleme
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "gokhanuc.dev"  # KENDİ KULLANICI ADINIZI YAZIN
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "cokguvenli123*"  # KENDİ GÜVENLİ ŞİFRENİZİ YAZIN
+      # WEBHOOK URL: Render size verdiği adresi buraya yazmanız gerekecek
+      # Şimdilik boş bırakın, kurulumdan sonra düzenleyeceğiz.
+      - key: WEBHOOK_URL
+        value: https://n8n-test-instance.onrender.com/
+    # VERİLERİ KAYBETMEMEK İÇİN KRİTİK AYAR!
+    disk:
+      name: n8n-data
+      mountPath: /home/node/.n8n
+      sizeGB: 0.75
